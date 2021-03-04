@@ -141,6 +141,49 @@ class App extends Component<Props, State> {
           </nav>
         }
         <Switch>
+        <Route exact path='/covid_comparisons'>
+            <section>
+              <section>
+                <h3 className='usa-overview'>
+                  <section className='overview-title'>
+                    USA Overview: &nbsp; &nbsp;
+                  </section>
+                  <section className='overview-stats'>
+                    <section className='stat-box'><span className='overview-numbers'>{ new Intl.NumberFormat('en-US').format(this.state.allUSAData.positive) }</span> cases &nbsp; &nbsp; &nbsp; &nbsp;</section>
+                    <section className='stat-box'><span className='overview-numbers'>{ new Intl.NumberFormat('en-US').format(this.state.allUSAData.death) }</span> deaths &nbsp; &nbsp; &nbsp; &nbsp;</section>
+                    <section className='stat-box'><span className='overview-numbers'>{ new Intl.NumberFormat('en-US').format(this.state.allUSAData.hospitalizedCurrently) }</span> current hospitalizations</section>
+                  </section>
+                </h3>
+              </section>
+              <main>
+                <section>
+                  <USAState 
+                    date={ this.formatDate() }
+                  />
+                </section>
+                <section className='stats-container'>
+                  <Stat 
+                    icon={ RiVirusFill }
+                    number={ new Intl.NumberFormat('en-US').format(this.state.selectedUSAState.positive) }
+                    title={ 'Cases' }
+                    details={ `This represents ${((this.state.selectedUSAState.positive / this.state.allUSAData.positive) * 100).toFixed(1)}% of all cases.` }
+                  />
+                  <Stat 
+                    icon={ GiCoffin }
+                    number={ new Intl.NumberFormat('en-US').format(this.state.selectedUSAState.death) }
+                    title={ 'Deaths' }
+                    details={ `This represents ${((this.state.selectedUSAState.death / this.state.allUSAData.death) * 100).toFixed(1)}% of all deaths.` }
+                  />
+                  <Stat 
+                    icon={ RiHospitalFill }
+                    number={ new Intl.NumberFormat('en-US').format(this.state.selectedUSAState.hospitalizedCurrently) }
+                    title={ 'Current Hospitalizations' }
+                    details={ `This represents ${((this.state.selectedUSAState.hospitalizedCurrently / this.state.allUSAData.hospitalizedCurrently) * 100).toFixed(1)}% of all current hospitalizations.` }
+                  />
+                </section>
+              </main>
+            </section>
+          </Route>
           <Route exact path='/'>
             <section>
               <section>
